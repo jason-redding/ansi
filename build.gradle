@@ -52,6 +52,11 @@ test {
     useJUnitPlatform()
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 compileJava {
     options.compilerArgs.add('-Xlint:unchecked')
 }
