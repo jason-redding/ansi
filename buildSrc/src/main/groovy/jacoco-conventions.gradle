@@ -1,0 +1,12 @@
+
+plugins {
+    id 'jacoco'
+}
+
+tasks.named('jacocoTestReport', JacocoReport).configure { JacocoReport task ->
+    dependsOn tasks.named('test')
+    reports {
+        xml.required = true
+        html.required = true
+    }
+}

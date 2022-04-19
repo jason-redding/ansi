@@ -28,7 +28,8 @@ plugins {
     id 'groovy'
     id 'java'
     id 'org.springframework.boot' version '2.6.6'
-    id 'jacoco'
+    id 'java-library-conventions'
+    id 'jacoco-conventions'
 }
 
 group 'com.witcraft'
