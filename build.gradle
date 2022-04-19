@@ -45,7 +45,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
 }
 
-apply plugin: DiffCoverageCompliancePlugin
+wrapper {
+    gradleVersion = '7.4.2'
+    distributionType = Wrapper.DistributionType.ALL
+}
 
 test {
     finalizedBy jacocoTestReport
