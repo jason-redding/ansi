@@ -3,7 +3,6 @@ package com.witcraft.ansi;
 import com.witcraft.ansi.AnsiSequence.Style;
 import org.junit.jupiter.api.*;
 
-import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.IntStream;
@@ -16,7 +15,6 @@ import static org.junit.jupiter.api.DynamicTest.dynamicTest;
 
 public class AnsiTest {
     private static final Pattern PATTERN_ANSI_CONTROL_SEQUENCE = Pattern.compile("(\\x1B\\[)([\\x30-\\x3F]*)([\\x20-\\x2F]*)([\\x40-\\x7E])");
-    private static final Pattern PATTERN_ZERO_OR_NOTHING = Pattern.compile("^0?$");
 
     private Ansi ansi;
 
@@ -73,7 +71,7 @@ public class AnsiTest {
                 if (left.expectsArgument() != right.expectsArgument()) {
                     if (left.expectsArgument()) {
                         return 1;
-                    } else if (right.expectsArgument()) {
+                    } else {
                         return -1;
                     }
                 }
@@ -81,8 +79,8 @@ public class AnsiTest {
             })
             .map((style) -> {
                 if (style.expectsArgument()) {
-                    //return dynamicContainer("Test encoding of Style." + style.name() + " with integer arguments [0-10000]", IntStream.rangeClosed(0, 10000).mapToObj((i) -> {
-                    return dynamicContainer("Test encoding of Style." + style.name() + " with integer arguments [0x0-0xFFFFFF]", IntStream.rangeClosed(0, 0xffffff).mapToObj((i) -> {
+                    return dynamicContainer("Test encoding of Style." + style.name() + " with integer arguments [0-10000]", IntStream.rangeClosed(0, 10000).mapToObj((i) -> {
+                    //return dynamicContainer("Test encoding of Style." + style.name() + " with integer arguments [0x0-0xFFFFFF]", IntStream.rangeClosed(0, 0xffffff).mapToObj((i) -> {
                         final String ansiSequence = String.valueOf(new Ansi(false).set(style, i));
                         final String styleSequence = style.getSequence(i);
                         return dynamicTest("Test encoding of Style." + style.name() + " with argument: " + i, () -> {
