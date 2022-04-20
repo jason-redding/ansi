@@ -4,6 +4,9 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ *
+ */
 public class Ansi implements AnsiSequence<Ansi> {
 
 
@@ -30,28 +33,17 @@ public class Ansi implements AnsiSequence<Ansi> {
     }
 
     @Override
-    public EnumSet<Style> getStyles() {
-        return styles;
-    }
+    public EnumSet<Style> getStyles() { return styles; }
 
     @Override
-    public Map<Style, Object> getArgumentMap() {
-        return argumentMap;
-    }
+    public Map<Style, Object> getArgumentMap() { return argumentMap; }
 
     @Override
-    public boolean isGrouped() {
-        return isGrouped;
-    }
+    public boolean isGrouped() { return isGrouped; }
 
     @Override
-    public Ansi setGrouped(boolean group) {
-        isGrouped = group;
-        return this;
-    }
+    public Ansi setGrouped(boolean group) { isGrouped = group; return this; }
 
     @Override
-    public String toString() {
-        return getSequence();
-    }
+    public String toString() { return getSequence(); }
 }
